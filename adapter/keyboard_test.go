@@ -22,7 +22,9 @@ func TestKeyboardInput_Read(t *testing.T) {
 
 	t.Run("when key is 'a'", func(t *testing.T) {
 		expected := 'a'
-		k := &adapter.KeyboardInput{Key: expected}
+		k := &adapter.KeyboardInput{}
+		k.SetKey(expected)
+
 		n, err := k.Read(result[:])
 		if err != nil {
 			t.Fatalf("error unexpected: %s", err.Error())
