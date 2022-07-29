@@ -1,6 +1,8 @@
 package adapter
 
-import chip8 "github.com/MarceloMPJR/go-chip-8"
+import (
+	chip8 "github.com/MarceloMPJR/go-chip-8"
+)
 
 type KeyboardInput struct {
 	key rune
@@ -22,5 +24,6 @@ func (ki *KeyboardInput) Read(p []byte) (n int, err error) {
 	}
 
 	p[0] = byte(ki.key)
+	ki.key = 0x0
 	return 1, nil
 }
