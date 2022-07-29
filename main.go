@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
 	"time"
@@ -17,6 +18,9 @@ func drawText(s tcell.Screen, x1, y1 int, style tcell.Style, text string) {
 }
 
 func main() {
+	filepath := flag.String("file", "", "file path of CHIP-8 program")
+	flag.Parse()
+
 	// Initialize screen
 	style := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorBlack)
 	screen, err := tcell.NewScreen()
@@ -34,8 +38,7 @@ func main() {
 
 	display := adapter.NewDisplay(&screen)
 
-	filepath := "/home/marcelo.junior/junim/emulators/roms/chip8/space_invaders.ch8"
-	memory := adapter.NewMemory(&filepath)
+	memory := adapter.NewMemory(filepath)
 
 	sound := adapter.NewSound(&screen)
 

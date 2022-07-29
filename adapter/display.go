@@ -18,8 +18,7 @@ func NewDisplay(screen *tcell.Screen) *chip8.StandardDisplay {
 func (do *DisplayOutput) Write(p []byte) (n int, err error) {
 	i, j := 0, 0
 
-	style := tcell.StyleDefault.Foreground(tcell.ColorWhite).Background(tcell.ColorBlack)
-
+	style := tcell.StyleDefault.Foreground(tcell.ColorViolet)
 	for _, r := range string(p) {
 		if r == '\n' {
 			i++
@@ -27,7 +26,13 @@ func (do *DisplayOutput) Write(p []byte) (n int, err error) {
 			continue
 		}
 
-		(*do.screen).SetContent(j, i, r, nil, style)
+		if string(r) == chip8.White {
+			style = tcell.StyleDefault.Foreground(tcell.ColorViolet)
+		} else {
+			style = tcell.StyleDefault.Foreground(tcell.ColorRed)
+		}
+
+		(*do.screen).SetContent(j, i, '▓', nil, style)
 		j++
 	}
 
