@@ -1,8 +1,6 @@
 package adapter
 
-import (
-	chip8 "github.com/MarceloMPJR/go-chip-8"
-)
+import chip8 "github.com/MarceloMPJR/go-chip-8"
 
 type KeyboardInput struct {
 	key rune
