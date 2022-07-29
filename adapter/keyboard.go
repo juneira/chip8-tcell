@@ -22,6 +22,6 @@ func (ki *KeyboardInput) Read(p []byte) (n int, err error) {
 	}
 
 	p[0] = byte(ki.key)
-	ki.key = 0x0
+	ki.key = 0xFF
 	return 1, nil
 }

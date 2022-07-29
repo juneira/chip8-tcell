@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"time"
 
 	"github.com/MarceloMPJR/chip8-tcell/adapter"
 	chip8 "github.com/MarceloMPJR/go-chip-8"
@@ -51,8 +52,8 @@ func cpu(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboard, m
 	})
 
 	cpu.Start()
-
 	for {
+		time.Sleep(20 * time.Microsecond)
 		pc := cpu.NextInstruction()
 		instr := memory.LoadInstruction(pc)
 
@@ -60,7 +61,6 @@ func cpu(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboard, m
 		memory.Load(k[:], 0)
 
 		cpu.Process(instr)
-		(*screen).Show()
 	}
 }
 

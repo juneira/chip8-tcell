@@ -31,5 +31,6 @@ func (do *DisplayOutput) Write(p []byte) (n int, err error) {
 		j++
 	}
 
+	(*do.screen).Show()
 	return len(p), nil
 }
