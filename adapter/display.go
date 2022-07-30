@@ -27,9 +27,9 @@ func (do *DisplayOutput) Write(p []byte) (n int, err error) {
 		}
 
 		if string(r) == chip8.White {
-			style = tcell.StyleDefault.Foreground(tcell.ColorViolet)
+			style = tcell.StyleDefault.Foreground(tcell.ColorWhite)
 		} else {
-			style = tcell.StyleDefault.Foreground(tcell.ColorRed)
+			style = tcell.StyleDefault.Foreground(tcell.ColorBlack)
 		}
 
 		(*do.screen).SetContent(j, i, '▓', nil, style)

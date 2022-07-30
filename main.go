@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/MarceloMPJR/chip8-tcell/adapter"
 	chip8 "github.com/MarceloMPJR/go-chip-8"
@@ -64,6 +65,7 @@ func startCPU(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboa
 
 	cpu.Start()
 	for {
+		time.Sleep(5 * time.Millisecond)
 		pc := cpu.NextInstruction()
 		instr := memory.LoadInstruction(pc)
 
