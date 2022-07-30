@@ -51,7 +51,9 @@ func main() {
 	startCPU(&screen, display, keyboard, memory, sound)
 }
 
-func startCPU(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboard, memory chip8.Memory, sound chip8.Sound) {
+func startCPU(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboard,
+	memory chip8.Memory, sound chip8.Sound) {
+
 	cpu := chip8.NewCpu(&chip8.ConfigCpu{
 		Display:  display,
 		Keyboard: keyboard,
