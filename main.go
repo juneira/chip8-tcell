@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"log"
+	"fmt"
 	"os"
 
 	"github.com/MarceloMPJR/chip8-tcell/adapter"
@@ -20,14 +20,21 @@ func main() {
 	filepath := flag.String("file", "", "file path of CHIP-8 program")
 	flag.Parse()
 
+	if *filepath == "" {
+		fmt.Println("Flag -file is required!")
+		return
+	}
+
 	// Initialize screen
 	style := tcell.StyleDefault.Background(tcell.ColorBlack).Foreground(tcell.ColorBlack)
 	screen, err := tcell.NewScreen()
 	if err != nil {
-		log.Fatalf("%+v", err)
+		fmt.Printf("%+v\n", err)
+		return
 	}
 	if err := screen.Init(); err != nil {
-		log.Fatalf("%+v", err)
+		fmt.Printf("%+v\n", err)
+		return
 	}
 	screen.SetStyle(style)
 	screen.Clear()
@@ -41,10 +48,10 @@ func main() {
 
 	sound := adapter.NewSound(&screen)
 
-	cpu(&screen, display, keyboard, memory, sound)
+	startCPU(&screen, display, keyboard, memory, sound)
 }
 
-func cpu(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboard, memory chip8.Memory, sound chip8.Sound) {
+func startCPU(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboard, memory chip8.Memory, sound chip8.Sound) {
 	cpu := chip8.NewCpu(&chip8.ConfigCpu{
 		Display:  display,
 		Keyboard: keyboard,
