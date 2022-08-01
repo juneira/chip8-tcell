@@ -63,15 +63,6 @@ func startCPU(screen *tcell.Screen, display chip8.Display, keyboard chip8.Keyboa
 	})
 
 	cpu.Start()
-	for {
-		pc := cpu.NextInstruction()
-		instr := memory.LoadInstruction(pc)
-
-		k := [0x1FF]byte{}
-		memory.Load(k[:], 0)
-
-		cpu.Process(instr)
-	}
 }
 
 func keyboardEventLoop(ki *adapter.KeyboardInput, s *tcell.Screen) {
