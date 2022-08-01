@@ -9,8 +9,7 @@ import (
 
 func NewMemory(filepath *string) *chip8.StandardMemory {
 	f, _ := os.Open(*filepath)
-	buf := bufio.NewReader(f)
+	b := bufio.NewReader(f)
 
-	rom := chip8.NewRom(buf)
-	return chip8.NewStandardMemory(&chip8.ConfigMemory{Rom: rom})
+	return chip8.NewStandardMemory(&chip8.ConfigMemory{Rom: b})
 }
